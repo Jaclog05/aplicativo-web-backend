@@ -1,14 +1,10 @@
 import app from './app.js';
 import morgan from 'morgan';
 import sequelize from './database/database.js';
-import './models/Question.js';
-import './models/Appraisal.js';
-import './models/User.js';
-import './models/SquareMeterPrice.js';
 
 async function main() {
   try {
-    await sequelize.sync()
+    await sequelize.sync({force: false})
     app.use(morgan('dev'))
     app.listen(4000)
     console.log('listen on port 4000')
