@@ -26,11 +26,11 @@ export const Appraisal = sequelize.define("appraisals", {
       type: DataTypes.ENUM("unifamiliar", "multifamiliar"),
       allowNull: false,
     },
-    estimated_value: {
+    property_value: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    calculated_value: {
+    estimated_value: {
       type: DataTypes.FLOAT,
       allowNull: false,
     }

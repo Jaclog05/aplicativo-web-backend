@@ -16,7 +16,7 @@ export const SquareMeterPrice = sequelize.define('square_meter_prices', {
     },
   },
   status: {
-    type: DataTypes.ENUM('used', 'new'),
+    type: DataTypes.ENUM('usada', 'nueva'),
     allowNull: false,
   },
   price: {

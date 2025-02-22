@@ -13,4 +13,6 @@ export const Question = sequelize.define("questions", {
   explanation: DataTypes.TEXT,
   question: DataTypes.TEXT,
   options: DataTypes.JSONB,
+}, {
+  timestamps: false,
 });
