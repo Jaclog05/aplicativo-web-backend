@@ -2,8 +2,14 @@ import { SquareMeterPrice } from "../models/SquareMeterPrice.js";
 
 export const getSquareMeterPrices = async (req, res) => {
   try {
-    const squareMeterPrices = await SquareMeterPrice.findAll()
-    res.json(squareMeterPrices)
+    const { stratum, status } = req.query;
+    const whereCondition = {};
+
+    if (stratum) whereCondition.stratum = stratum;
+    if (status) whereCondition.status = status;
+
+    const squareMeterPrices = await SquareMeterPrice.findAll({ where: whereCondition });
+    res.json(squareMeterPrices[0])
   } catch (error) {
     res.status(500).json({error: error.message})
   }
@@ -20,11 +26,4 @@ export const createSquareMeterPrices = async (req, res) => {
     res.status(500).json({error: error.message})
   }
 }
-
-//ES NECESARIO UN EDIT? O SIMPLEMENTE CREAR LOS REGISTROS DE CERO?
-
-/* export const editSquareMeterPrices = async (req, res) => {
-  await SquareMeterPrice.
-  res.send('editing square meter prices');
-} */
 
