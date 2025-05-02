@@ -13,12 +13,7 @@ export const getQuestions = async (req, res) => {
       raw: true
     });
 
-    const questionsWithNewIds = questions.map((question, index) => ({
-      ...question.toJSON(),
-      id: index + 1
-    }))
-
-    res.json(questionsWithNewIds);
+    res.json(questions);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
