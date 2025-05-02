@@ -8,14 +8,17 @@ export const getQuestions = async (req, res) => {
       ? { subgroup: { [Op.ne]: "Criterios Especificos" } } 
       : {};
 
-    const questions = await Question.findAll({ where: whereCondition });
+    const questions = await Question.findAll({
+      where: whereCondition,
+      raw: true
+    });
 
-    const questionsWithNewIds = questions.map((question, index) => ({
+    /* const questionsWithNewIds = questions.map((question, index) => ({
       ...question.toJSON(),
       id: index + 1
-    }))
+    })) */
 
-    res.json(questionsWithNewIds);
+    res.json(questions);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
