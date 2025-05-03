@@ -10,6 +10,7 @@ export const getQuestions = async (req, res) => {
 
     const questions = await Question.findAll({
       where: whereCondition,
+      order: [['id', 'ASC']],
       raw: true
     });
 
