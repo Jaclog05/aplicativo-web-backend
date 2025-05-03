@@ -4,7 +4,7 @@ import { Op } from 'sequelize';
 export const getQuestions = async (req, res) => {
   try {
     const { type } = req.query;
-    const whereCondition = type === 'Unifamiliar' 
+    const whereCondition = type === 'unifamiliar' 
       ? { subgroup: { [Op.ne]: "Criterios Especificos" } } 
       : {};
 
@@ -14,7 +14,12 @@ export const getQuestions = async (req, res) => {
       raw: true
     });
 
-    res.json(questions);
+    const sequenced = questions.map((q, index) => ({
+      ...q,
+      id: index + 1
+    }));
+
+    res.json(sequenced);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
